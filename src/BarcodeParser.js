@@ -108,28 +108,6 @@ const parseBarcode = (function () {
                 elementToReturn = "";
 
             /**
-             * ============ auxiliary functions for identifyAI =============
-             */
-            /**
-             * some data items are followed by an FNC even in case of
-             * fixed length, so the codestringToReturn may have
-             * leading FNCs.
-             *
-             * This function eleminates these leading FNCs.
-             *
-             * @param   {String} stringToClean string which has to be cleaned
-             * @returns {String} the cleaned string
-             */
-            function cleanCodestring(stringToClean) {
-                //
-                var firstChar = stringToClean.slice(0, 1);
-                while (firstChar === fncChar) {
-                    stringToClean = stringToClean.slice(1, stringToClean.length);
-                    firstChar = stringToClean.slice(0, 1);
-                }
-                return stringToClean;
-            }
-            /**
              * Used for calculating numbers which are given as string
              * with a given number of fractional decimals.
              *
@@ -1201,7 +1179,7 @@ const parseBarcode = (function () {
 
             return ({
                 element: elementToReturn,
-                codestring: cleanCodestring(codestringToReturn)
+                codestring: this.cleanCodestring(codestringToReturn)
             });
         }
 
@@ -1260,7 +1238,20 @@ const parseBarcode = (function () {
             break;
         }
      
-        function cleanCodestring(stringToClean) {
+       /**
+             * ============ auxiliary functions for identifyAI =============
+             */
+            /**
+             * some data items are followed by an FNC even in case of
+             * fixed length, so the codestringToReturn may have
+             * leading FNCs.
+             *
+             * This function eleminates these leading FNCs.
+             *
+             * @param   {String} stringToClean string which has to be cleaned
+             * @returns {String} the cleaned string
+             */
+            function cleanCodestring(stringToClean) {
                 //
                 var firstChar = stringToClean.slice(0, 1);
                 while (firstChar === fncChar) {
@@ -1269,7 +1260,6 @@ const parseBarcode = (function () {
                 }
                 return stringToClean;
             }
-
         /**
          * we have chopped off any symbology identifier. Now we can
          * try to parse the rest. It should give us an array of
