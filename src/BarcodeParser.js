@@ -1256,9 +1256,19 @@ const parseBarcode = (function () {
             break;
         default:
             answer.codeName = "";
-            restOfBarcode = barcode;
+            restOfBarcode = cleanCodestring(barcode);
             break;
         }
+     
+        function cleanCodestring(stringToClean) {
+                //
+                var firstChar = stringToClean.slice(0, 1);
+                while (firstChar === fncChar) {
+                    stringToClean = stringToClean.slice(1, stringToClean.length);
+                    firstChar = stringToClean.slice(0, 1);
+                }
+                return stringToClean;
+            }
 
         /**
          * we have chopped off any symbology identifier. Now we can
