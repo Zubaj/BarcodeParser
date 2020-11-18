@@ -1179,7 +1179,7 @@ const parseBarcode = (function () {
 
             return ({
                 element: elementToReturn,
-                codestring: this.cleanCodestring(codestringToReturn)
+                codestring: cleanCodestring(codestringToReturn)
             });
         }
 
