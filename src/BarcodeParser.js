@@ -196,7 +196,7 @@ const parseBarcode = (function () {
                     monthAsNumber--;
                 }
 
-                elementToReturn.data.setFullYear(yearAsNumber, monthAsNumber, dayAsNumber);
+                elementToReturn.data.setUTCFullYear(yearAsNumber, monthAsNumber, dayAsNumber);
                 codestringToReturn = codestring.slice(offSet + 6, codestringLength);
                 elementToReturn.raw = codestring.slice(offSet, offSet+6);
             }
